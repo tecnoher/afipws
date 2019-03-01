@@ -1,6 +1,6 @@
 <?php
 
-namespace AfipWS\Afip;
+namespace AfipWS;
 
 class TokenAutorization
 {

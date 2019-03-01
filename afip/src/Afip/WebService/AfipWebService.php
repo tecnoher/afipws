@@ -1,9 +1,9 @@
 <?php
 
-namespace AfipWS\Afip\WebService;
+namespace AfipWS\WebService;
 
-use AfipWS\Afip\Error\ConfigurationErrorException;
-use AfipWS\Afip\Error\RuntimeErrorException;
+use AfipWS\Error\ConfigurationErrorException;
+use AfipWS\Error\RuntimeErrorException;
 
 abstract class AfipWebService
 {

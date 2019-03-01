@@ -6,9 +6,9 @@
  *
  **/
 
-namespace AfipWS\Afip\WebService;
+namespace AfipWS\WebService;
 
-use AfipWS\Afip\WebService\AfipWebService;
+use AfipWS\WebService\AfipWebService;
 
 class PadronAlcanceDiez extends AfipWebService
 {

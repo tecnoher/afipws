@@ -1,12 +1,12 @@
 <?php
 
-namespace AfipWS\Afip;
+namespace AfipWS;
 
-use AfipWS\Afip\TokenAutorization;
-use AfipWS\Afip\Error\WebServiceNotImplementedException;
-use AfipWS\Afip\Error\ConfigurationErrorException;
-use AfipWS\Afip\Error\RuntimeErrorException;
-use AfipWS\Afip\Error\ApplicationNotFoundException;
+use AfipWS\TokenAutorization;
+use AfipWS\Error\WebServiceNotImplementedException;
+use AfipWS\Error\ConfigurationErrorException;
+use AfipWS\Error\RuntimeErrorException;
+use AfipWS\Error\ApplicationNotFoundException;
 
 class Afip
 {

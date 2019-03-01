@@ -24,10 +24,17 @@
         "phpunit/phpunit": "6.0.*",
         "friendsofphp/php-cs-fixer": "~2.0"
     },
+
+    "repositories": [         
+        {             
+            "type": "composer",             
+            "url": ""
+        }     
+    ],
     
     "autoload": {
         "psr-4": {
-            "AfipWS\\Afip\\": "src/AfipWS/Afip"
+            "AfipWS\\Afip\\": "src/Afip"
         }
     },     
     "minimum-stability": "dev",

@@ -1,6 +1,6 @@
 <?php
 
-namespace AfipWS\Afip\Error;
+namespace AfipWS\Error;
 
 class RuntimeErrorException extends CustomException
 {

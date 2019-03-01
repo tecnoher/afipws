@@ -32,21 +32,18 @@ class Afip
     if (!isset($config['CUIT']))
     {
       throw new ConfigurationErrorException("AFIP", "No se configuró el CUIT en la configuración de Web Service");
-    } else {
-      $this->setCuit($config['CUIT']);
     }
+    $this->setCuit($config['CUIT']);
 
     if (!isset($config['token_dir']))
     {
       throw new ConfigurationErrorException("AFIP", "No se configuró el dir del token en la configuración de Web Service");
-    } else {
-      $this->setXMLFolder($config['token_dir']);
     }
+      $this->setXMLFolder($config['token_dir']);
 
-    if (!isset($config['production']))
+    $config['production'] = false;
+    if (isset($config['production']))
     {
-      $config['production'] = false;
-    } else {
       $config['production'] = boolval($config['production']);
     }
 
@@ -73,13 +70,16 @@ class Afip
       $this->wsaa_url     = 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms';
     }
 
-    if (!file_exists($this->cert)) {
+    if (!file_exists($this->cert))
+    {
       throw new ConfigurationErrorException("cert", "Error al abrir el archivo ".$this->cert."\n", 1);
     }
-    if (!file_exists($this->privatekey)) {
+    if (!file_exists($this->privatekey))
+    {
       throw new ConfigurationErrorException("privatekey", "Error al abrir el archivo ".$this->privatekey."\n", 2);
     }
-    if (!file_exists($this->wsaa_wsdl)) {
+    if (!file_exists($this->wsaa_wsdl))
+    {
       throw new ConfigurationErrorException("wsaa_wsdl", "Error al abrir el archivo ".$this->wsaa_wsdl."\n", 3);
     }
   }
@@ -138,20 +138,23 @@ class Afip
     **/
     public function getServiceTA($service, $continue = true)
     {
-      if (file_exists($this->xml_folder.'TA-'.$this->options['CUIT'].'-'.$service.'.xml')) {
+      if (file_exists($this->xml_folder.'TA-'.$this->options['CUIT'].'-'.$service.'.xml'))
+      {
         $ta = new \SimpleXMLElement(file_get_contents($this->xml_folder.'TA-'.$this->options['CUIT'].'-'.$service.'.xml'));
 
         $actual_time        = new \DateTime(date('c', date('U')+600));
         $expiration_time    = new \DateTime($ta->header->expirationTime);
 
-        if ($actual_time < $expiration_time) {
+        if ($actual_time < $expiration_time)
+        {
           return new TokenAutorization($ta->credentials->token, $ta->credentials->sign);
         } elseif ($continue === false) {
           throw new RuntimeErrorException("TokenAutorization", "Error obteniendo el TA", 5);
         }
       }
 
-      if ($this->createServiceTA($service)) {
+      if ($this->createServiceTA($service))
+      {
         return $this->getServiceTA($service, false);
       }
     }

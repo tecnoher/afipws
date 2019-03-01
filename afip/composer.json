@@ -1,19 +1,11 @@
 {
     "name": "AfipWS/api-afip",
     "description": "Librería para la gestión de Web Services de AFIP",
-    "homepage": "",
-    "license": "AfipWS/Afip",
     "authors": [
         {
             "name": "afip-ws",
             "email": "hernanarg2008@gmail.com"
         }
-    ],
-    "repositories": [         
-        {             
-            "type": "composer",             
-            "url": ""
-        }     
     ],
     "config": {
         "bin-dir": "bin"

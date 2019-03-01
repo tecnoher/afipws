@@ -12,20 +12,20 @@ use AfipWS\WebService\AfipWebService;
 
 class PadronAlcanceCinco extends AfipWebService
 {
-    public function __construct($afip)
-    {
-        parent::__construct($afip);
-        $this->setConfig();
-    }
+  public function __construct($afip)
+  {
+    parent::__construct($afip);
+    $this->setConfig();
+  }
 
-    public function setConfig()
-    {
-        $this->setSoapVersion(SOAP_1_1);
-        $this->setWSDL('ws_sr_padron_a5-production.wsdl');
-        $this->setUrl('https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5');
-        $this->setWSDLTest('ws_sr_padron_a5.wsdl');
-        $this->setUrlTest('https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5');
-    }
+  public function setConfig()
+  {
+    $this->setSoapVersion(SOAP_1_1);
+    $this->setWSDL('ws_sr_padron_a5-production.wsdl');
+    $this->setUrl('https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5');
+    $this->setWSDLTest('ws_sr_padron_a5.wsdl');
+    $this->setUrlTest('https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5');
+  }
 
     /**
      *  Verifica el estado y la disponibilidad de los elementos principales del servicio
@@ -38,7 +38,7 @@ class PadronAlcanceCinco extends AfipWebService
     **/
     public function getEstadoServicio()
     {
-        return $this->ejecutar('dummy');
+      return $this->ejecutar('dummy');
     }
 
     /**
@@ -53,25 +53,25 @@ class PadronAlcanceCinco extends AfipWebService
      **/
     public function getContribuyenteDetalle($id)
     {
-        $afip = $this->getAfip();
-        $ta = $afip->getServiceTA('ws_sr_padron_a5');
-        
-        $params = array(
-            'token'             => $ta->getToken(),
-            'sign'              => $ta->getSign(),
-            'cuitRepresentada'  => $afip->getCuit(),
-            'idPersona'         => $id
-        );
+      $afip = $this->getAfip();
+      $ta = $afip->getServiceTA('ws_sr_padron_a5');
+      
+      $params = array(
+        'token'             => $ta->getToken(),
+        'sign'              => $ta->getSign(),
+        'cuitRepresentada'  => $afip->getCuit(),
+        'idPersona'         => $id
+      );
 
-        try {
-            return $this->ejecutar('getPersona', $params);
-        } catch (\Exception $e) {
-            if (strpos($e->getMessage(), 'No existe') !== false) {
-                return null;
-            } else {
-                throw $e;
-            }
+      try {
+        return $this->ejecutar('getPersona', $params);
+      } catch (\Exception $e) {
+        if (strpos($e->getMessage(), 'No existe') !== false) {
+          return null;
+        } else {
+          throw $e;
         }
+      }
     }
 
     /**
@@ -84,8 +84,8 @@ class PadronAlcanceCinco extends AfipWebService
      **/
     public function ejecutar($operation, $params = array())
     {
-        $results = parent::ejecutar($operation, $params);
+      $results = parent::ejecutar($operation, $params);
 
-        return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
+      return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
     }
-}
+  }

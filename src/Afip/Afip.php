@@ -24,31 +24,34 @@ class Afip
   public function __construct($config)
   {
     ini_set("soap.wsdl_cache_enabled", "0");
-
     $this->setOptions($config);
   }
 
-  public function setOptions($config)
+  protected function setOptions($config)
   {
-    if (!isset($config['CUIT'])) {
+    if (!isset($config['CUIT']))
+    {
       throw new ConfigurationErrorException("AFIP", "No se configuró el CUIT en la configuración de Web Service");
     } else {
       $this->setCuit($config['CUIT']);
     }
 
-    if (!isset($config['token_dir'])) {
+    if (!isset($config['token_dir']))
+    {
       throw new ConfigurationErrorException("AFIP", "No se configuró el dir del token en la configuración de Web Service");
     } else {
       $this->setXMLFolder($config['token_dir']);
     }
 
-    if (!isset($config['production'])) {
+    if (!isset($config['production']))
+    {
       $config['production'] = false;
     } else {
       $config['production'] = boolval($config['production']);
     }
 
-    if (!isset($config['passphrase'])) {
+    if (!isset($config['passphrase']))
+    {
       $config['passphrase'] = 'xxxxx';
     }
 

@@ -15,7 +15,6 @@ class PadronAlcanceTrece extends AfipWebService
   public function __construct($afip)
   {
     parent::__construct($afip);
-
     $this->setConfig();
   }
 
@@ -55,7 +54,6 @@ class PadronAlcanceTrece extends AfipWebService
     public function getContribuyenteDetalle($id)
     {
       $afip = $this->getAfip();
-
       $ta = $afip->getServiceTA('ws_sr_padron_a13');
 
       $params = array(
@@ -78,7 +76,8 @@ class PadronAlcanceTrece extends AfipWebService
 
     public function getPersonByDocumento($id)
     {
-      $ta = $this->afip->GetServiceTA('ws_sr_padron_a13');
+      $afip = $this->getAfip();
+      $ta = $afip->getServiceTA('ws_sr_padron_a13');
 
       $params = array(
         'token'             => $ta->getToken(),
@@ -110,6 +109,6 @@ class PadronAlcanceTrece extends AfipWebService
     {
       $results = parent::ejecutar($operation, $params);
 
-      return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
+      return $results->{$operation == 'getPersona' ? 'personaReturn' : $operation == 'getIdPersonaListByDocumento' ? 'idPersonaListReturn' : 'return'};
     }
   }

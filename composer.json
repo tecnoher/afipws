@@ -29,9 +29,9 @@
         }     
     ],
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "AfipWS\\": "src"
+        }
     },    
     "prefer-stable": true
 }

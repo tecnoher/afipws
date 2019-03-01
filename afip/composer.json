@@ -12,31 +12,27 @@
     "config": {
         "bin-dir": "bin"
     },
-
     "require": {
         "php": ">=5.6.0",
         "psr/log": "~1.0",
         "ext-soap": "*"
     },
-
     "require-dev": {
         "monolog/monolog": "~1.13",
         "phpunit/phpunit": "6.0.*",
         "friendsofphp/php-cs-fixer": "~2.0"
     },
-
     "repositories": [         
         {             
             "type": "composer",             
             "url": ""
         }     
     ],
-    
     "autoload": {
-        "psr-4": {
-            "AfipWS\\Afip\\": "src/Afip"
-        }
-    },     
+        "classmap": [
+            "src/"
+        ]
+    },    
     "minimum-stability": "dev",
     "prefer-stable": true
 }

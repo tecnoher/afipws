@@ -5,7 +5,7 @@ Para el desarrollo de esta librería se toma como referencia el código fuente d
 ## Instalación
 La instalación se hace a través de Composer
 ```
-composer require AfipWS/api-afip
+composer require afip-ws/afip
 ```
 ## Uso
 

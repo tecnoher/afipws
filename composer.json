@@ -1,5 +1,5 @@
 {
-    "name": "afip-ws/afip",
+    "name": "afipws/afip",
     "type": "library",
     "description": "Librería para la gestión de Web Services de AFIP",
     "homepage": "https://github.com/tecnoher/afip-ws",

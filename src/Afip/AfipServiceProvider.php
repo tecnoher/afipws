@@ -40,7 +40,7 @@ class AfipServiceProvider extends ServiceProvider
 
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
-            $loader->alias('Afip', 'afip-ws\afip\Afip\Afip');
+            $loader->alias('Afip', 'afipws\afip\Afip\Afip');
         });
 
     }

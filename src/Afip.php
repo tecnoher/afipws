@@ -29,26 +29,31 @@ class Afip
 
   protected function setOptions($config)
   {
-    if (!isset($config['CUIT']))
-    {
+    if (!isset($config['CUIT'])) {
+
       throw new ConfigurationErrorException("AFIP", "No se configuró el CUIT en la configuración de Web Service");
-    }
-    $this->setCuit($config['CUIT']);
+    } else {
 
-    if (!isset($config['token_dir']))
-    {
+      $this->setCuit($config['CUIT']);
+    }
+
+    if (!isset($config['token_dir'])) {
+
       throw new ConfigurationErrorException("AFIP", "No se configuró el dir del token en la configuración de Web Service");
-    }
-      $this->setXMLFolder($config['token_dir']);
+    } else {
 
-    $config['production'] = false;
-    if (isset($config['production']))
-    {
+      $this->setXMLFolder($config['token_dir']);
+    }
+
+    if (!isset($config['production'])) {
+      $config['production'] = false;
+    } else {
+
+
       $config['production'] = boolval($config['production']);
     }
 
-    if (!isset($config['passphrase']))
-    {
+    if (!isset($config['passphrase'])) {
       $config['passphrase'] = 'xxxxx';
     }
 
@@ -58,7 +63,7 @@ class Afip
 
     $dir_name = dirname(__FILE__);
 
-    $this->setWSDLFolder(realpath($dir_name.'/../../wsdl').'/');
+    $this->setWSDLFolder(realpath($dir_name.'/../wsdl').'/');
 
     $this->cert         = $config['cert'];
     $this->privatekey   = $config['key'];
@@ -222,6 +227,7 @@ class Afip
         'trace'          => 1,
         'exceptions'     => 0
       ));
+
       $results=$client->loginCms(array('in0'=>$cms));
       if (is_soap_fault($results)) {
         throw new RuntimeErrorException("SOAP", " Error: ".$results->faultcode."\n".$results->faultstring."\n", 4);

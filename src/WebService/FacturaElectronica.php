@@ -74,7 +74,7 @@ class FacturaElectronica extends AfipWebService
           'CbteTipo' 	=> $data['CbteTipo']
         ),
         'FeDetReq' => array(
-          'FECAEDetRequest' => &$data
+          'FECAEDetRequest' => $data
         )
       )
     );

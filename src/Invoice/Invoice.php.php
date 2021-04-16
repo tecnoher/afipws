@@ -83,11 +83,11 @@ class Invoice extends FPDF
 
 
         //NAME
-        $this->SetX(9);
-        $this->SetY(32);
-        $this->SetFont('UniFont', '', 16);
+        $this->SetX(8);
+        $this->SetY(35);
+        $this->SetFont('UniFont', '', 8);
         $this->SetTextColor($data['color']['red'], $data['color']['green'], $data['color']['blue']);
-        $this->Cell(80, 2, $data['company_data']['name'], 0, 1, 'L');
+        $this->Cell(80, 3, $data['company_data']['name'], 0, 1, 'L');
 
         $this->SetX(9);
         $this->SetY(38);
@@ -96,19 +96,19 @@ class Invoice extends FPDF
 
         //ADDRESS
         $this->SetX(9);
-        $this->Cell(80, 2, $data['company_data']['address'] . ' ' . $data['company_data']['city'] . ', CP:' .$data['company_data']['postal_code'], 0, 1, 'L');
+        $this->Cell(80, 3, $data['company_data']['address'] . ' ' . $data['company_data']['city'] . ', CP:' .$data['company_data']['postal_code'], 0, 1, 'L');
 
         // PHONE
         $this->SetX(9);
-        $this->Cell(80, 2, $data['text']['phone'] . ' ' . $data['company_data']['phone'], 0, 1, 'L');
+        $this->Cell(80, 3, $data['text']['phone'] . ' ' . $data['company_data']['phone'], 0, 1, 'L');
 
         // EMAIL
         $this->SetX(9);
-        $this->Cell(80, 2, $data['text']['email'] . ' ' . $data['company_data']['email'], 0, 1, 'L');
+        $this->Cell(80, 3, $data['text']['email'] . ' ' . $data['company_data']['email'], 0, 1, 'L');
 
         // WEB
         $this->SetX(9);
-        $this->Cell(80, 2, $data['company_data']['web'], 0, 1, 'L');
+        $this->Cell(80, 3, $data['company_data']['web'], 0, 1, 'L');
         $this->Ln();
 
 
@@ -126,24 +126,24 @@ class Invoice extends FPDF
         //		$this->SetFont('UniFont', '', 12);
 
         $this->y += 3;
+        $this->SetFont('UniFont', '', 8);
         // CUSTOMER NAME
         $this->SetX(9);
-        $this->Cell(80, 10, mb_strtoupper($data['customer_data']['name'], 'UTF-8'), 0, 1, 'L');
+        $this->Cell(80, 6, mb_strtoupper($data['customer_data']['name'], 'UTF-8'), 0, 1, 'L');
 
         // CUSTOMER IDENTY
         $this->SetX(9);
-        $this->Cell(80, 10, mb_strtoupper($data['customer_data']['ident'], 'UTF-8'), 0, 1, 'L');
+        $this->Cell(80, 6, mb_strtoupper($data['customer_data']['ident'], 'UTF-8'), 0, 1, 'L');
 
         // CUSTOMER ADDRESS
         $this->SetX(9);
-        $this->Cell(80, 10, mb_strtoupper($data['customer_data']['address'] . ' ' . $data['customer_data']['city'] . ' CP: ' . $data['customer_data']['postal_code'], 'UTF-8'), 0, 1, 'L');
+        $this->Cell(80, 6, mb_strtoupper($data['customer_data']['address'] . ' ' . $data['customer_data']['city'] . ' CP: ' . $data['customer_data']['postal_code'], 'UTF-8'), 0, 1, 'L');
 
         // CONDICION DE IVA
         $this->SetX(9);
-        $this->Cell(80, 10, isset($data['customer_data']['condicion_iva']) ? $data['customer_data']['condicion_iva'] : "", 0, 1, 'L');
+        $this->Cell(80, 6, isset($data['customer_data']['condicion_iva']) ? $data['customer_data']['condicion_iva'] : "", 0, 1, 'L');
 
         // INVOICE DATA
-
         $this->SetTextColor(0, 0, 0);
         $this->SetFont('UniFont', '', 18);
         $this->SetY(8);
@@ -172,7 +172,6 @@ class Invoice extends FPDF
         $this->Cell(36, 3, "Inicio Actividades: " . ' ' . mb_strtoupper($data['company_data']['ini_act'], 'UTF-8'), 0, 1, 'L');
 
         // FECHA
-
         $this->SetX(115);
         $this->y += 3;
         $this->SetFontSize(9);
@@ -231,7 +230,7 @@ class Invoice extends FPDF
         $this->SetLineWidth(0.1);
         $this->SetFont('UniFont', '', 8);
 
-        $this->SetY(85);
+        $this->SetY(80);
         $this->SetX(9);
 
         $w = array(30, 72, 20, 10, 20, 20, 20, 20);
@@ -272,7 +271,7 @@ class Invoice extends FPDF
         $w = array(30, 72, 20, 10, 20, 20, 20, 20);
         $this->SetFillColor(224, 235, 255);
         $this->SetTextColor(0);
-        $this->SetY(92);
+        $this->SetY(88);
         foreach ($products as $product) {
             $code = isset($product['code']) ? $product['code'] : "";
             $this->SetX(9);
@@ -331,7 +330,7 @@ class Invoice extends FPDF
     public function Total($data)
     {
         $cellW = 43;
-        $ypos = 250;
+        $ypos = 230;
         $cellX = 9;
 
         $this->SetX(9);
@@ -507,11 +506,15 @@ class Invoice extends FPDF
             $this->SetTextColor(0, 0, 0);
             $this->SetFontSize(7);
             $barcode = $data['barcode'].$this->digitoVerificador($data['barcode']);
-            $this->i25(9, 265, $barcode);
-            $this->Image('storage/images/'.$data['invoice_num'].'.png', 172, 6, 25, 25);
+            $this->i25(105, 256, $barcode, 0.8, 6);
+            $this->Image('storage/images/'.$data['invoice_num'].'.png', 9, 250, 30, 30);
             //$this->Text(170, 255, );
-            $this->Text(165, 270, 'CAE: ' . $data['CAE']);
-            $this->Text(165, 274, 'VTO: ' . $data['Vto']);
+            //$this->SetFont('UniFont', '', 6);
+            $this->Image('storage/images/afipLogo.png', 50, 250, 40, 20);
+            $this->Text(50, 272, 'Comprobante Autorizado');            
+            //$this->Text(50, 277, 'Esta Administración Federal no se responsabiliza por los datos ingresados en el detalle de la operación');            
+            $this->Text(165, 250, 'CAE: ' . $data['CAE']);
+            $this->Text(165, 254, 'VTO: ' . $data['Vto']);
         }
 
         return $this->Output($format);

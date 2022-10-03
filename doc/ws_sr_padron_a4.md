@@ -2,7 +2,7 @@
 
 Servicio de Consulta de Padrón Alcance 4. El servicio de Consulta de Padrón Alcance 4 permite acceder a los datos de un contribuyente registrado en el Padrón de AFIP. Este WS se puede utilizar para acceder a datos de un contribuyente relacionados con su situación tributaria. Ejemplo: impuestos y regimenes en los que esta inscripto.
 
-La documentación de AFIP de este Web Service se encuentra disponible en [Manual para el desarrollador](http://www.afip.gob.ar/ws/ws_sr_padron_a4/manual_ws_sr_padron_a4_v1.1.pdf)
+La documentación de AFIP de este Web Service se encuentra disponible en [Manual para el desarrollador](http://www.afip.gob.ar/ws/ws_sr_padron_a4/manual_ws_sr_padron_a4_v1.2.pdf)
 
 Datos para pruebas en el ambiente de testing [Datos Prueba](http://www.afip.gob.ar/ws/ws_sr_padron_a4/datos-prueba-padron-a4.txt)
 

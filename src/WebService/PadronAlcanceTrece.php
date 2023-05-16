@@ -109,6 +109,6 @@ class PadronAlcanceTrece extends AfipWebService
     {
       $results = parent::ejecutar($operation, $params);
 
-      return $results->{$operation == 'getPersona' ? 'personaReturn' : $operation == 'getIdPersonaListByDocumento' ? 'idPersonaListReturn' : 'return'};
+      return $results->{$operation == 'getPersona' ? 'personaReturn' : ($operation == 'getIdPersonaListByDocumento' ? 'idPersonaListReturn' : 'return')};
     }
   }

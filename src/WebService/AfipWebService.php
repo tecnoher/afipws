@@ -76,12 +76,21 @@ abstract class AfipWebService
             throw new ConfigurationErrorException("WSDL", "Error al abrir el archivo WSDL ".$this->wsdl."\n", 3);
         }
 
+        $ctx = stream_context_create([
+            'ssl' => [
+                'ciphers' => 'DEFAULT:!DH',
+                'verify_peer' => true,
+                'verify_peer_name' => true,
+            ]
+        ]);
+
         if (!isset($this->soap_client)) {
             $this->soap_client = new \SoapClient($this->wsdl, array(
                 'soap_version'  => $this->soap_version,
                 'location'      => $this->url,
                 'trace'         => 1,
-                'exceptions'    => 0
+                'exceptions'    => 0,
+                'stream_context' => $ctx,
             ));
         }
 
